@@ -1,8 +1,8 @@
 #!/bin/sh
 
 xml_edit() {
-  tag="$1" && shift
-  value="$2" && shift
+  tag="$1"
+  value="$2"
   sed --in-place -e "s|<${tag}>[^<]*</${tag}>|<${tag}>${value}</${tag}>|g" /etc/icecast.xml
 }
 
