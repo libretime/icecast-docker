@@ -61,10 +61,9 @@ RUN chmod +x \
     /usr/local/bin/xml-edit
 
 COPY --from=builder /build/output /
-RUN chown $USER:$USER /etc/icecast.xml
 
-RUN install --directory --owner=$USER \
-    /var/log/icecast
+RUN mkdir -p /var/log/icecast && \
+    chown $USER /etc/icecast.xml /var/log/icecast
 
 EXPOSE 8000
 ENTRYPOINT ["docker-entrypoint"]
