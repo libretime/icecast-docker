@@ -1,5 +1,4 @@
-VERSIONS =	2.4.4 \
-			2.5-beta3
+VERSIONS =	2.4.4 2.5-beta3
 TARBALLS = $(foreach version,$(VERSIONS),icecast-$(version).tar.gz)
 
 all: build
