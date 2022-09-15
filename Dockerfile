@@ -39,6 +39,7 @@ FROM debian:bullseye-slim
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     ca-certificates \
+    media-types \
     libcurl4 \
     libogg0 \
     libspeex1 \
@@ -47,7 +48,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     libvorbis0a \
     libxml2  \
     libxslt1.1 \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* /var/cache/*
 
 ENV USER=icecast
 
