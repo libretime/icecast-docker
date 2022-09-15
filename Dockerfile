@@ -61,6 +61,7 @@ RUN chmod +x \
     /usr/local/bin/xml-edit
 
 COPY --from=builder /build/output /
+RUN xml-edit errorlog - /etc/icecast.xml
 
 RUN mkdir -p /var/log/icecast && \
     chown $USER /etc/icecast.xml /var/log/icecast
