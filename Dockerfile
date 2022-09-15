@@ -55,6 +55,7 @@ ENV USER=icecast
 RUN adduser --disabled-password --gecos '' --no-create-home $USER
 
 COPY --from=builder /build/output /
+RUN chown $USER:$USER /etc/icecast.xml
 
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint
 RUN chmod +x /usr/local/bin/docker-entrypoint

@@ -3,7 +3,8 @@
 xml_edit() {
   tag="$1"
   value="$2"
-  sed --in-place -e "s|<${tag}>[^<]*</${tag}>|<${tag}>${value}</${tag}>|g" /etc/icecast.xml
+  RESULT=$(sed -e "s|<${tag}>[^<]*</${tag}>|<${tag}>${value}</${tag}>|g" /etc/icecast.xml) &&
+    echo "$RESULT" > /etc/icecast.xml
 }
 
 if [ -n "$ICECAST_SOURCE_PASSWORD" ]; then
