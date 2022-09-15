@@ -10,7 +10,7 @@ $(TARBALLS):
 
 $(VERSIONS): $(TARBALLS)
 	docker build \
-		--tag icecast:$@ \
+		--tag ghcr.io/jooola/icecast:$@ \
 		--build-arg VERSION=$@ \
 		.
 
