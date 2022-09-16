@@ -2,7 +2,7 @@
 
 This project provide a icecast container image.
 
-```
+```bash
 docker run -d -p 8000:8000 ghcr.io/jooola/icecast:2.4.4
 ```
 
@@ -24,7 +24,7 @@ You can tweak the configuration using the following environment variables:
 
 Or you can mount your own configuration file in the container:
 
-```
+```bash
 docker run -d \
     -p 8000:8000 \
     -v ./icecast.xml:/etc/icecast.xml \
