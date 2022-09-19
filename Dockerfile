@@ -48,7 +48,11 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     libvorbis0a \
     libxml2  \
     libxslt1.1 \
-    && rm -rf /var/lib/apt/lists/* /var/cache/*
+    && rm -rf \
+    /var/cache/* \
+    /var/lib/apt/lists/* \
+    /var/log/apt/*.log \
+    /var/log/dpkg.log
 
 ENV USER=icecast
 
