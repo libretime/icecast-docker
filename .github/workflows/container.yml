@@ -85,4 +85,4 @@ jobs:
             VERSION=${{ matrix.version }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          push: ${{ steps.diff.outputs.changed && (github.event_name == 'push' || github.event_name == 'schedule') }}
+          push: ${{ fromJSON(steps.diff.outputs.changed) && (github.event_name == 'push' || github.event_name == 'schedule') }}
