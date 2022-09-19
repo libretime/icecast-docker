@@ -51,7 +51,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     && rm -rf \
     /var/cache/* \
     /var/lib/apt/lists/* \
-    /var/log/apt/*.log \
+    /var/log/apt/* \
     /var/log/dpkg.log
 
 ENV USER=icecast
