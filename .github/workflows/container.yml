@@ -24,7 +24,7 @@ jobs:
     env:
       LATEST: "2.4.4"
       REGISTRY: ghcr.io
-      NAMESPACE: ${{ github.repository_owner }}
+      IMAGE: ghcr.io/${{ github.repository_owner }}/icecast
 
     if: ${{ github.repository_owner == 'jooola' }}
     steps:
@@ -43,7 +43,7 @@ jobs:
       - uses: docker/metadata-action@v4
         id: meta
         with:
-          images: ${{ env.REGISTRY }}/${{ env.NAMESPACE }}/icecast
+          images: ${{ env.IMAGE }}
           tags: |
             type=raw,value=${{ matrix.version }},suffix=-{{date 'YYYYMMDD'}}
             type=raw,value=${{ matrix.version }}
