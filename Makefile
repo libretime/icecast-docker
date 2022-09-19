@@ -1,5 +1,6 @@
 VERSIONS =	2.4.4 2.5-beta3
 TARBALLS = $(foreach version,$(VERSIONS),icecast-$(version).tar.gz)
+IMAGE = ghcr.io/jooola/icecast
 
 all: build
 
@@ -10,7 +11,7 @@ $(TARBALLS):
 
 $(VERSIONS): $(TARBALLS)
 	docker build \
-		--tag ghcr.io/jooola/icecast:$@ \
+		--tag $(IMAGE):main \
 		--build-arg VERSION=$@ \
 		.
 
