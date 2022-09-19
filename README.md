@@ -8,12 +8,10 @@ docker run -d -p 8000:8000 ghcr.io/jooola/icecast:2.4.4
 
 The following icecast versions are supported:
 
-| Version     | Tags                                       |
-| ----------- | ------------------------------------------ |
-| `2.4.4`     | `2.4.4-YYYYMMDD`, `2.4.4`, `2.4`, `latest` |
-| `2.5-beta3` | `2.5b3-YYYYMMDD`,`2.5b3`                   |
-
-> The `2.5b3` tag might change in the future in order to match the icecast version format.
+| Version     | Tags                                |
+| ----------- | ----------------------------------- |
+| `2.4.4`     | `2.4.4-YYYYMMDD`, `2.4.4`, `latest` |
+| `2.5-beta3` | `2.5-beta3-YYYYMMDD`,`2.5-beta3`    |
 
 The default configuration file (`/etc/icecast.xml`) was updated with following changes:
 

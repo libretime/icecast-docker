@@ -22,6 +22,7 @@ jobs:
           - "2.5-beta3"
 
     env:
+      LATEST: "2.4.4"
       REGISTRY: ghcr.io
       NAMESPACE: ${{ github.repository_owner }}
 
@@ -44,9 +45,9 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.NAMESPACE }}/icecast
           tags: |
-            type=pep440,pattern={{version}},value=${{ matrix.version }},suffix=-{{date 'YYYYMMDD'}}
-            type=pep440,pattern={{version}},value=${{ matrix.version }}
-            type=pep440,pattern={{major}}.{{minor}},value=${{ matrix.version }}
+            type=raw,value=${{ matrix.version }},suffix=-{{date 'YYYYMMDD'}}
+            type=raw,value=${{ matrix.version }}
+            type=raw,value=latest,enable=${{ matrix.version == env.LATEST }}
 
       - uses: docker/build-push-action@v3
         with:
