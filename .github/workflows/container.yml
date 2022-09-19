@@ -38,6 +38,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Build previous image fs-checksums
+        run: |
+          docker pull ${{ env.IMAGE }}:${{ matrix.version }}
+          INPUT=${{ env.IMAGE }}:${{ matrix.version }} OUTPUT=previous.txt make fs-checksums
+
       - run: make icecast-${{ matrix.version }}.tar.gz
 
       - uses: docker/metadata-action@v4
@@ -57,4 +62,27 @@ jobs:
             VERSION=${{ matrix.version }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          push: ${{ github.event_name == 'push' || github.event_name == 'schedule' }}
+          load: true
+
+      - name: Build new image fs-checksums
+        run: |
+          INPUT=${{ env.IMAGE }}:${{ matrix.version }} OUTPUT=new.txt make fs-checksums
+
+      - name: Check if container changed
+        id: diff
+        run: |
+          if diff previous.txt new.txt; then
+            echo "::set-output name=changed::false"
+          else
+            echo "::set-output name=changed::true"
+          fi
+
+      - uses: docker/build-push-action@v3
+        with:
+          context: .
+          pull: true
+          build-args: |
+            VERSION=${{ matrix.version }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          push: ${{ steps.diff.outputs.changed && (github.event_name == 'push' || github.event_name == 'schedule') }}
