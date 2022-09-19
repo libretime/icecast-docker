@@ -21,7 +21,7 @@ fs-checksums:
 		--hostname icecast \
 		--user 0:0 \
 		$(INPUT) \
-		bash -c 'find /bin /etc /lib /usr -type f | sort | xargs -I{} sha512sum {} || true' \
+		bash -c 'find /bin /etc /lib /lib64 /root /sbin /usr -type f | sort | xargs -I{} sha512sum {} || true' \
 		> $(OUTPUT)
 
 build: $(VERSIONS)
