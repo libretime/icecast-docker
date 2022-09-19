@@ -11,6 +11,7 @@ $(TARBALLS):
 
 $(VERSIONS): $(TARBALLS)
 	docker build \
+		--pull \
 		--tag $(IMAGE):main \
 		--build-arg VERSION=$@ \
 		.
