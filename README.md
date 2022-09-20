@@ -3,7 +3,7 @@
 This project provide a icecast container image.
 
 ```bash
-docker run -d -p 8000:8000 ghcr.io/jooola/icecast:2.4.4
+docker run -d -p 8000:8000 ghcr.io/libretime/icecast:2.4.4
 ```
 
 The following icecast versions are supported:
@@ -37,5 +37,5 @@ Or you can mount your own configuration file in the container:
 docker run -d \
     -p 8000:8000 \
     -v ./icecast.xml:/etc/icecast.xml \
-    ghcr.io/jooola/icecast:2.4.4
+    ghcr.io/libretime/icecast:2.4.4
 ```

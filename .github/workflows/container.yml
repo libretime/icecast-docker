@@ -26,7 +26,7 @@ jobs:
       REGISTRY: ghcr.io
       IMAGE: ghcr.io/${{ github.repository_owner }}/icecast
 
-    if: ${{ github.repository_owner == 'jooola' }}
+    if: ${{ github.repository_owner == 'libretime' }}
     steps:
       - uses: actions/checkout@v3
 
