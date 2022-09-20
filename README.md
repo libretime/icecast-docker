@@ -2,6 +2,8 @@
 
 This project provide a icecast container image.
 
+While the image is under the LibreTime namespace, anyone can use it! This image will not add any LibreTime specific features, and will not deviate from upstream.
+
 ```bash
 docker run -d -p 8000:8000 ghcr.io/libretime/icecast:2.4.4
 ```
