@@ -18,11 +18,15 @@ jobs:
       fail-fast: false
       matrix:
         version:
-          - "2.4.4"
-          - "2.5-beta3"
+          - 2.4.4
+          - 2.5-beta3
+        variant:
+          - debian
+          - alpine
 
     env:
-      LATEST: "2.4.4"
+      DEFAULT_VARIANT: debian
+      DEFAULT_VERSION: 2.4.4
       REGISTRY: ghcr.io
       IMAGE: ghcr.io/${{ github.repository_owner }}/icecast
 
@@ -40,8 +44,8 @@ jobs:
 
       - name: Build previous image fs-checksums
         run: |
-          if docker pull ${{ env.IMAGE }}:${{ matrix.version }}; then
-            INPUT=${{ env.IMAGE }}:${{ matrix.version }} OUTPUT=previous.txt make fs-checksums
+          if docker pull ${{ env.IMAGE }}:${{ matrix.version }}-${{ matrix.variant }}; then
+            INPUT=${{ env.IMAGE }}:${{ matrix.version }}-${{ matrix.variant }} OUTPUT=previous.txt make fs-checksums
           fi
 
       - run: make icecast-${{ matrix.version }}.tar.gz
@@ -51,14 +55,20 @@ jobs:
         with:
           images: ${{ env.IMAGE }}
           tags: |
-            type=raw,value=${{ matrix.version }},suffix=-{{date 'YYYYMMDD'}}
-            type=raw,value=${{ matrix.version }}
-            type=raw,value=latest,enable=${{ matrix.version == env.LATEST }}
+            type=raw,value=${{ matrix.version }}-{{date 'YYYYMMDD'}}-${{ matrix.variant }}
+            type=raw,value=${{ matrix.version }}-{{date 'YYYYMMDD'}},enable=${{ matrix.variant == env.DEFAULT_VARIANT }}
+
+            type=raw,value=${{ matrix.version }}-${{ matrix.variant }}
+            type=raw,value=${{ matrix.version }},enable=${{ matrix.variant == env.DEFAULT_VARIANT }}
+
+            type=raw,value=${{ matrix.variant }},enable=${{ matrix.version == env.DEFAULT_VERSION }}
+            type=raw,value=latest,enable=${{ matrix.variant == env.DEFAULT_VARIANT && matrix.version == env.DEFAULT_VERSION }}
 
       - uses: docker/build-push-action@v3
         with:
           context: .
           pull: true
+          file: ${{ matrix.variant }}.dockerfile
           build-args: |
             VERSION=${{ matrix.version }}
           tags: ${{ steps.meta.outputs.tags }}
@@ -67,7 +77,7 @@ jobs:
 
       - name: Build new image fs-checksums
         run: |
-          INPUT=${{ env.IMAGE }}:${{ matrix.version }} OUTPUT=new.txt make fs-checksums
+          INPUT=${{ env.IMAGE }}:${{ matrix.version }}-${{ matrix.variant }} OUTPUT=new.txt make fs-checksums
 
       - name: Check if container changed
         id: diff
@@ -82,6 +92,7 @@ jobs:
         with:
           context: .
           pull: true
+          file: ${{ matrix.variant }}.dockerfile
           build-args: |
             VERSION=${{ matrix.version }}
           tags: ${{ steps.meta.outputs.tags }}
