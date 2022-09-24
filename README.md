@@ -8,12 +8,12 @@ While the image is under the LibreTime namespace, anyone can use it! This image 
 docker run -d -p 8000:8000 ghcr.io/libretime/icecast:2.4.4
 ```
 
-The following icecast versions are supported:
+The following icecast tags are supported:
 
-| Version     | Tags                                |
-| ----------- | ----------------------------------- |
-| `2.4.4`     | `2.4.4-YYYYMMDD`, `2.4.4`, `latest` |
-| `2.5-beta3` | `2.5-beta3-YYYYMMDD`,`2.5-beta3`    |
+- `2.4.4-YYYYMMDD-debian`, `2.4.4-YYYYMMDD`, `2.4.4-debian`, `2.4.4`, `debian`, `latest`
+- `2.4.4-YYYYMMDD-alpine`, `2.4.4-alpine`, `alpine`
+- `2.5-beta3-YYYYMMDD-debian`, `2.5-beta3-YYYYMMDD`, `2.5-beta3-debian`, `2.5-beta3`
+- `2.5-beta3-YYYYMMDD-alpine`, `2.5-beta3-alpine`
 
 > Tags such as `2.4.4` might get updated with newer images if the system packages or the base images changes. To prevent this we suggest you to use the `2.4.4-YYYYMMDD` tags that include the build date (e.g. `2.4.4-20220919`).
 
