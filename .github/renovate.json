@@ -16,6 +16,12 @@
       "addLabels": [
         "ci"
       ]
+    },
+    {
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "automerge": true
     }
   ]
 }
