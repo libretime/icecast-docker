@@ -5,8 +5,25 @@ on:
     - cron: "0 3 * * 0"
   push:
     branches: [main]
+    paths:
+      - .github/workflows/container.yml
+      - alpine.dockerfile
+      - debian.dockerfile
+      - docker-entrypoint.sh
+      - Makefile
+      - SHA512SUMS.txt
+      - xml-edit.sh
+
   pull_request:
     branches: [main]
+    paths:
+      - .github/workflows/container.yml
+      - alpine.dockerfile
+      - debian.dockerfile
+      - docker-entrypoint.sh
+      - Makefile
+      - SHA512SUMS.txt
+      - xml-edit.sh
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
