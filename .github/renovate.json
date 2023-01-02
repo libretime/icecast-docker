@@ -1,10 +1,5 @@
 {
-  "extends": [
-    "config:base",
-    ":enablePreCommit",
-    ":preserveSemverRanges",
-    ":disableDependencyDashboard"
-  ],
+  "extends": ["config:base", ":enablePreCommit", ":preserveSemverRanges"],
   "labels": ["dependencies"],
   "packageRules": [
     {
