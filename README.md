@@ -1,6 +1,6 @@
 # icecast
 
-This project provide a icecast container image.
+This [project](https://github.com/libretime/icecast-docker) provide icecast container images.
 
 While the image is under the LibreTime namespace, anyone can use it! This image will not add any LibreTime specific features, and will not deviate from upstream.
 
@@ -40,5 +40,5 @@ Or you can mount your own configuration file in the container:
 docker run -d \
     -p 8000:8000 \
     -v ./icecast.xml:/etc/icecast.xml \
-    ghcr.io/libretime/icecast:2.4.4
+    libretime/icecast:2.4.4
 ```
