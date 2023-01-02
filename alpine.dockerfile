@@ -1,4 +1,4 @@
-FROM alpine:3.16 as builder
+FROM alpine:3.16@sha256:b95359c2505145f16c6aa384f9cc74eeff78eb36d308ca4fd902eeeb0a0b161b as builder
 ARG VERSION
 
 RUN apk --no-cache add \
@@ -26,7 +26,7 @@ RUN ./configure \
 RUN make
 RUN make install DESTDIR=/build/output
 
-FROM alpine:3.16
+FROM alpine:3.16@sha256:b95359c2505145f16c6aa384f9cc74eeff78eb36d308ca4fd902eeeb0a0b161b
 
 RUN apk --no-cache add \
     libcurl \
