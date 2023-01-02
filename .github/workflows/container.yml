@@ -1,8 +1,6 @@
 name: Container
 
 on:
-  schedule:
-    - cron: "0 3 * * 0"
   push:
     branches: [main]
     paths:
@@ -44,8 +42,6 @@ jobs:
     env:
       DEFAULT_VARIANT: debian
       DEFAULT_VERSION: 2.4.4
-      REGISTRY: ghcr.io
-      IMAGE: ghcr.io/${{ github.repository_owner }}/icecast
 
     if: ${{ github.repository_owner == 'libretime' }}
     steps:
@@ -55,22 +51,17 @@ jobs:
 
       - uses: docker/login-action@v2
         with:
-          registry: ${{ env.REGISTRY }}
+          registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build previous image fs-checksums
-        run: |
-          if docker pull ${{ env.IMAGE }}:${{ matrix.version }}-${{ matrix.variant }}; then
-            INPUT=${{ env.IMAGE }}:${{ matrix.version }}-${{ matrix.variant }} OUTPUT=previous.txt make fs-checksums
-          fi
 
       - run: make icecast-${{ matrix.version }}.tar.gz
 
       - uses: docker/metadata-action@v4
         id: meta
         with:
-          images: ${{ env.IMAGE }}
+          images: |
+            ghcr.io/${{ github.repository_owner }}/icecast
           tags: |
             type=raw,value=${{ matrix.version }}-{{date 'YYYYMMDD'}}-${{ matrix.variant }}
             type=raw,value=${{ matrix.version }}-{{date 'YYYYMMDD'}},enable=${{ matrix.variant == env.DEFAULT_VARIANT }}
@@ -90,28 +81,4 @@ jobs:
             VERSION=${{ matrix.version }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          load: true
-
-      - name: Build new image fs-checksums
-        run: |
-          INPUT=${{ env.IMAGE }}:${{ matrix.version }}-${{ matrix.variant }} OUTPUT=new.txt make fs-checksums
-
-      - name: Check if container changed
-        id: diff
-        run: |
-          if diff previous.txt new.txt; then
-            echo "::set-output name=changed::false"
-          else
-            echo "::set-output name=changed::true"
-          fi
-
-      - uses: docker/build-push-action@v3
-        with:
-          context: .
-          pull: true
-          file: ${{ matrix.variant }}.dockerfile
-          build-args: |
-            VERSION=${{ matrix.version }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          push: ${{ fromJSON(steps.diff.outputs.changed) && (github.event_name == 'push' || github.event_name == 'schedule') }}
+          push: ${{ github.event_name == 'push' }}
