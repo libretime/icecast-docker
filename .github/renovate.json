@@ -1,6 +1,9 @@
 {
   "extends": ["config:base", ":enablePreCommit", ":preserveSemverRanges"],
   "labels": ["dependencies"],
+  "dockerfile": {
+    "fileMatch": ["^.*\\.dockerfile$"]
+  },
   "packageRules": [
     {
       "matchManagers": ["github-actions"],
