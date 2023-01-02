@@ -5,22 +5,14 @@
     ":preserveSemverRanges",
     ":disableDependencyDashboard"
   ],
-  "labels": [
-    "dependencies"
-  ],
+  "labels": ["dependencies"],
   "packageRules": [
     {
-      "matchManagers": [
-        "github-actions"
-      ],
-      "addLabels": [
-        "ci"
-      ]
+      "matchManagers": ["github-actions"],
+      "addLabels": ["ci"]
     },
     {
-      "matchUpdateTypes": [
-        "patch"
-      ],
+      "matchUpdateTypes": ["patch"],
       "automerge": true
     }
   ]
