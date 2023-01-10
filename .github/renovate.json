@@ -14,7 +14,7 @@
       "pinDigests": true
     },
     {
-      "matchUpdateTypes": ["patch", "pinDigest"],
+      "matchUpdateTypes": ["patch", "digest"],
       "automerge": true
     }
   ]
