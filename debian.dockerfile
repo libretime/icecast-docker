@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim@sha256:8c60e19bd285355325cf3e1d39223317ec5847346726c5ae88a037c01322b426
+FROM debian:bullseye-slim@sha256:8c60e19bd285355325cf3e1d39223317ec5847346726c5ae88a037c01322b426 as builder
 ARG VERSION
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
