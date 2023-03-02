@@ -1,4 +1,4 @@
-# icecast
+# [icecast](https://github.com/libretime/icecast-docker)
 
 This [project](https://github.com/libretime/icecast-docker) provide icecast container images.
 
