@@ -70,9 +70,6 @@ jobs:
             ghcr.io/${{ github.repository_owner }}/icecast
             ${{ github.repository_owner }}/icecast
           tags: |
-            type=raw,value=${{ matrix.version }}-{{date 'YYYYMMDD'}}-${{ matrix.variant }}
-            type=raw,value=${{ matrix.version }}-{{date 'YYYYMMDD'}},enable=${{ matrix.variant == env.DEFAULT_VARIANT }}
-
             type=raw,value=${{ matrix.version }}-${{ matrix.variant }}
             type=raw,value=${{ matrix.version }},enable=${{ matrix.variant == env.DEFAULT_VARIANT }}
 
