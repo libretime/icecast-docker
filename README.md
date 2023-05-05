@@ -11,12 +11,18 @@ docker run -d -p 8000:8000 ghcr.io/libretime/icecast:2.4.4
 
 The following icecast tags are supported:
 
-- `2.4.4-YYYYMMDD-debian`, `2.4.4-YYYYMMDD`, `2.4.4-debian`, `2.4.4`, `debian`, `latest`
-- `2.4.4-YYYYMMDD-alpine`, `2.4.4-alpine`, `alpine`
-- `2.5-beta3-YYYYMMDD-debian`, `2.5-beta3-YYYYMMDD`, `2.5-beta3-debian`, `2.5-beta3`
-- `2.5-beta3-YYYYMMDD-alpine`, `2.5-beta3-alpine`
+- `2.4.4-debian`, `2.4.4`, `debian`, `latest`
+- `2.4.4-alpine`, `alpine`
+- `2.5-beta3-debian`, `2.5-beta3`
+- `2.5-beta3-alpine`
 
-> Tags such as `2.4.4` might get updated with newer images if the system packages or the base images changes. To prevent this we suggest you to use the `2.4.4-YYYYMMDD` tags that include the build date (e.g. `2.4.4-20220919`).
+> If the underlying system packages or the base images are updated, a newer docker image will be build. The tags will always point to the newer images. To prevent unexpected images updates, we suggest you to pin the image by adding its sha256 digest, for example `2.4.4@sha256:56e6f265675f07a80c4164f48b2ed6f3d371aed78a334c666dd2eda0d97afc5e`.
+>
+> You can use the following command to get an image sha256 digest:
+>
+> ```bash
+> docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/libretime/icecast:2.4.4
+> ```
 
 The default configuration file (`/etc/icecast.xml`) was updated with following changes:
 
