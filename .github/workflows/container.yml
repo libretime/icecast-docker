@@ -78,7 +78,7 @@ jobs:
             type=raw,value=${{ matrix.variant }},enable=${{ matrix.version == env.DEFAULT_VERSION }}
             type=raw,value=latest,enable=${{ matrix.variant == env.DEFAULT_VARIANT && matrix.version == env.DEFAULT_VERSION }}
 
-      - uses: docker/build-push-action@v5
+      - uses: docker/build-push-action@v6
         with:
           context: .
           pull: true
