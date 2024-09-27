@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim@sha256:a3fd77cb2575476ac86ce2077ced3b48d8f7cf22b5444dd1cbad7c1f3fbf22e4 as builder
+FROM debian:bullseye-slim@sha256:3f9e53602537cc817d96f0ebb131a39bdb16fa8b422137659a9a597e7e3853c1 as builder
 ARG VERSION
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
@@ -34,7 +34,7 @@ RUN ./configure \
 RUN make
 RUN make install DESTDIR=/build/output
 
-FROM debian:bullseye-slim@sha256:a3fd77cb2575476ac86ce2077ced3b48d8f7cf22b5444dd1cbad7c1f3fbf22e4
+FROM debian:bullseye-slim@sha256:3f9e53602537cc817d96f0ebb131a39bdb16fa8b422137659a9a597e7e3853c1
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
