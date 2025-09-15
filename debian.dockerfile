@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim@sha256:6d3c63184632046054ae709964befc943ecffa140adc697ca955a10002a79c08 AS builder
+FROM debian:trixie-slim AS builder
 ARG VERSION
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
@@ -34,7 +34,7 @@ RUN ./configure \
 RUN make
 RUN make install DESTDIR=/build/output
 
-FROM debian:bullseye-slim@sha256:6d3c63184632046054ae709964befc943ecffa140adc697ca955a10002a79c08
+FROM debian:trixie-slim
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -43,7 +43,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     libcurl4 \
     libogg0 \
     libspeex1 \
-    libssl1.1 \
+    libssl3t64 \
     libtheora0 \
     libvorbis0a \
     libxml2  \
@@ -56,7 +56,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
 
 ENV USER=icecast
 
-RUN adduser --disabled-password --gecos '' --no-create-home $USER
+RUN useradd --no-create-home $USER
 
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint
 COPY xml-edit.sh /usr/local/bin/xml-edit
