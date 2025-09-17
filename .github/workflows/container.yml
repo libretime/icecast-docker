@@ -62,7 +62,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - run: make icecast-${{ matrix.version }}.tar.gz
+      - run: make checksum
 
       - uses: docker/metadata-action@v5
         id: meta
