@@ -4,12 +4,10 @@ IMAGE = ghcr.io/libretime/icecast
 
 all: build
 
-tarballs: $(TARBALLS)
-$(TARBALLS):
-	wget -q http://downloads.xiph.org/releases/icecast/$@
+checksum:
 	sha512sum --ignore-missing --check SHA512SUMS.txt
 
-$(VERSIONS): $(TARBALLS)
+$(VERSIONS): $(TARBALLS) checksum
 	docker build \
 		--file debian.dockerfile \
 		--pull \
