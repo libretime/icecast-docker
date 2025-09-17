@@ -34,7 +34,6 @@ jobs:
       matrix:
         version:
           - 2.4.4
-          - 2.5-beta3
         variant:
           - debian
           - alpine
