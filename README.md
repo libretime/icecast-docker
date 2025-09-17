@@ -13,6 +13,8 @@ The following icecast tags are supported:
 
 - `2.4.4-debian`, `2.4.4`, `debian`, `latest`
 - `2.4.4-alpine`, `alpine`
+- `2.5.0-rc1-debian`, `2.5.0-rc1`
+- `2.5.0-rc1-alpine`
 
 The following icecast tags are **not supported** anymore:
 
