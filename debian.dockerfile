@@ -1,8 +1,11 @@
 FROM debian:trixie-slim@sha256:c2880112cc5c61e1200c26f106e4123627b49726375eb5846313da9cca117337 AS builder
 ARG VERSION
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+RUN <<"EOF"
+set -eux
+export DEBIAN_FRONTEND=noninteractive
+apt-get -y update
+apt-get install -y --no-install-recommends \
     automake \
     build-essential \
     ca-certificates \
@@ -10,7 +13,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     libtool \
     make \
     pkg-config \
-    # Icecast
     libcurl4-openssl-dev \
     libogg-dev \
     libspeex-dev \
@@ -18,8 +20,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     libtheora-dev \
     libvorbis-dev \
     libxml2-dev \
-    libxslt1-dev \
-    && rm -rf /var/lib/apt/lists/*
+    libxslt1-dev
+rm -rf /var/lib/apt/lists/*
+EOF
 
 WORKDIR /build
 ADD icecast-$VERSION.tar.gz .
@@ -36,8 +39,11 @@ RUN make install DESTDIR=/build/output
 
 FROM debian:trixie-slim@sha256:c2880112cc5c61e1200c26f106e4123627b49726375eb5846313da9cca117337
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+RUN <<"EOF"
+set -eux
+export DEBIAN_FRONTEND=noninteractive
+apt-get -y update
+apt-get install -y --no-install-recommends \
     ca-certificates \
     media-types \
     libcurl4 \
@@ -47,12 +53,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     libtheora0 \
     libvorbis0a \
     libxml2  \
-    libxslt1.1 \
-    && rm -rf \
-    /var/cache/* \
-    /var/lib/apt/lists/* \
-    /var/log/apt/* \
-    /var/log/dpkg.log
+    libxslt1.1
+rm -rf /var/lib/apt/lists/*
+EOF
 
 ENV USER=icecast
 
