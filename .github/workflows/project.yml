@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: "3.x"
 
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pre-commit-pip-${{ hashFiles('.pre-commit-config.yaml') }}
