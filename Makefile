@@ -1,4 +1,4 @@
-VERSIONS =	2.4.4 2.5.0-rc1
+VERSIONS =	2.4.4 2.5.0-rc2
 TARBALLS = $(foreach version,$(VERSIONS),icecast-$(version).tar.gz)
 IMAGE = ghcr.io/libretime/icecast
 
