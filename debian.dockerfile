@@ -1,4 +1,4 @@
-FROM debian:trixie-slim@sha256:e711a7b30ec1261130d0a121050b4ed81d7fb28aeabcf4ea0c7876d4e9f5aca2 AS builder
+FROM debian:trixie-slim@sha256:91e29de1e4e20f771e97d452c8fa6370716ca4044febbec4838366d459963801 AS builder
 ARG VERSION
 
 RUN <<"EOF"
@@ -37,7 +37,7 @@ RUN ./configure \
 RUN make
 RUN make install DESTDIR=/build/output
 
-FROM debian:trixie-slim@sha256:e711a7b30ec1261130d0a121050b4ed81d7fb28aeabcf4ea0c7876d4e9f5aca2
+FROM debian:trixie-slim@sha256:91e29de1e4e20f771e97d452c8fa6370716ca4044febbec4838366d459963801
 
 RUN <<"EOF"
 set -eux
