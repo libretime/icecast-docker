@@ -12,7 +12,7 @@ RUN apk --no-cache add \
     libxslt-dev \
     openssl-dev \
     speex-dev \
-    $(if [ $VERSION = "2.5.0-rc2" ]; then echo \
+    $(if [ $VERSION = "2.5.0" ]; then echo \
     libigloo-dev \
     librhash-dev \
     ; fi)
@@ -41,7 +41,7 @@ RUN apk --no-cache add \
     libxslt \
     openssl \
     speex \
-    $(if [ $VERSION = "2.5.0-rc2" ]; then echo \
+    $(if [ $VERSION = "2.5.0" ]; then echo \
     libigloo0 \
     librhash1 \
     ; fi)

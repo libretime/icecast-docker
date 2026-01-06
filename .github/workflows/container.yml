@@ -34,14 +34,14 @@ jobs:
       matrix:
         version:
           - 2.4.4
-          - 2.5.0-rc2
+          - 2.5.0
         variant:
           - debian
           - alpine
 
     env:
       DEFAULT_VARIANT: debian
-      DEFAULT_VERSION: 2.4.4
+      DEFAULT_VERSION: 2.5.0
 
     if: ${{ github.repository_owner == 'libretime' }}
     steps:

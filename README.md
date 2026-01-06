@@ -5,16 +5,16 @@ This [project](https://github.com/libretime/icecast-docker) provide icecast cont
 While the image is under the LibreTime namespace, anyone can use it! This image will not add any LibreTime specific features, and will not deviate from upstream.
 
 ```bash
-docker run -d -p 8000:8000 libretime/icecast:2.4.4
-docker run -d -p 8000:8000 ghcr.io/libretime/icecast:2.4.4
+docker run -d -p 8000:8000 libretime/icecast:2.5.0
+docker run -d -p 8000:8000 ghcr.io/libretime/icecast:2.5.0
 ```
 
 The following icecast tags are supported:
 
-- `2.4.4-debian`, `2.4.4`, `debian`, `latest`
-- `2.4.4-alpine`, `alpine`
-- `2.5.0-rc2-debian`, `2.5.0-rc2`
-- `2.5.0-rc2-alpine`
+- `2.4.4-debian`, `2.4.4`
+- `2.4.4-alpine`
+- `2.5.0-debian`, `2.5.0`, `debian`, `latest`
+- `2.5.0-alpine`, `alpine`
 
 The following icecast tags are **not supported** anymore:
 
@@ -26,7 +26,7 @@ The following icecast tags are **not supported** anymore:
 > You can use the following command to get an image sha256 digest:
 >
 > ```bash
-> docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/libretime/icecast:2.4.4
+> docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/libretime/icecast:2.5.0
 > ```
 
 The default configuration file (`/etc/icecast.xml`) was updated with following changes:
@@ -51,5 +51,5 @@ Or you can mount your own configuration file in the container:
 docker run -d \
     -p 8000:8000 \
     -v ./icecast.xml:/etc/icecast.xml \
-    libretime/icecast:2.4.4
+    libretime/icecast:2.5.0
 ```

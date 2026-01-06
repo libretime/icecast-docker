@@ -21,7 +21,7 @@ apt-get install -y --no-install-recommends \
     libvorbis-dev \
     libxml2-dev \
     libxslt1-dev \
-    $(if [ $VERSION = "2.5.0-rc2" ]; then echo \
+    $(if [ $VERSION = "2.5.0" ]; then echo \
     libigloo-dev \
     librhash-dev \
     ; fi)
@@ -58,7 +58,7 @@ apt-get install -y --no-install-recommends \
     libvorbis0a \
     libxml2  \
     libxslt1.1 \
-    $(if [ $VERSION = "2.5.0-rc2" ]; then echo \
+    $(if [ $VERSION = "2.5.0" ]; then echo \
     libigloo0t64 \
     librhash1 \
     ; fi)
