@@ -4,16 +4,17 @@
 FROM debian:trixie-slim@sha256:77ba0164de17b88dd0bf6cdc8f65569e6e5fa6cd256562998b62553134a00ef0 AS builder
 ARG VERSION
 
-RUN <<'EOF'
+RUN <<"EOF"
 set -eux
 export DEBIAN_FRONTEND=noninteractive
-apt-get update
+apt-get -y update
 apt-get install -y --no-install-recommends \
     autoconf \
     automake \
     build-essential \
     ca-certificates \
     curl \
+    git \
     libtool \
     make \
     pkg-config \
@@ -73,7 +74,7 @@ ARG VERSION
 RUN <<'EOF'
 set -eux
 export DEBIAN_FRONTEND=noninteractive
-apt-get update
+apt-get -y update
 apt-get install -y --no-install-recommends \
     ca-certificates \
     media-types \
@@ -83,7 +84,7 @@ apt-get install -y --no-install-recommends \
     libssl3t64 \
     libtheora0 \
     libvorbis0a \
-    libxml2 \
+    libxml2  \
     libxslt1.1 \
     librhash1
 rm -rf /var/lib/apt/lists/*
