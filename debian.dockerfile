@@ -20,7 +20,11 @@ apt-get install -y --no-install-recommends \
     libtheora-dev \
     libvorbis-dev \
     libxml2-dev \
-    libxslt1-dev
+    libxslt1-dev \
+    $(if [ $VERSION = "2.5.0" ]; then echo \
+    libigloo-dev \
+    librhash-dev \
+    ; fi)
 rm -rf /var/lib/apt/lists/*
 EOF
 
@@ -53,7 +57,11 @@ apt-get install -y --no-install-recommends \
     libtheora0 \
     libvorbis0a \
     libxml2  \
-    libxslt1.1
+    libxslt1.1 \
+    $(if [ $VERSION = "2.5.0" ]; then echo \
+    libigloo0t64 \
+    librhash1 \
+    ; fi)
 rm -rf /var/lib/apt/lists/*
 EOF
 
