@@ -11,7 +11,11 @@ RUN apk --no-cache add \
     libxml2-dev \
     libxslt-dev \
     openssl-dev \
-    speex-dev
+    speex-dev \
+    $(if [ $VERSION = "2.5.0" ]; then echo \
+    libigloo-dev \
+    librhash-dev \
+    ; fi)
 
 WORKDIR /build
 ADD icecast-$VERSION.tar.gz .
@@ -36,7 +40,11 @@ RUN apk --no-cache add \
     libxml2 \
     libxslt \
     openssl \
-    speex
+    speex \
+    $(if [ $VERSION = "2.5.0" ]; then echo \
+    libigloo0 \
+    librhash1 \
+    ; fi)
 
 ENV USER=icecast
 
