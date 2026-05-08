@@ -1,1 +1,2 @@
 *.tar.gz filter=lfs diff=lfs merge=lfs -text
+icecast-*.tar.gz filter=lfs diff=lfs merge=lfs -text

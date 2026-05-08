@@ -4,6 +4,7 @@ ARG VERSION
 RUN <<"EOF"
 set -eux
 export DEBIAN_FRONTEND=noninteractive
+echo "deb http://deb.debian.org/debian trixie-backports main" >/etc/apt/sources.list.d/trixie-backports.list
 apt-get -y update
 apt-get install -y --no-install-recommends \
     automake \
@@ -20,7 +21,10 @@ apt-get install -y --no-install-recommends \
     libtheora-dev \
     libvorbis-dev \
     libxml2-dev \
-    libxslt1-dev
+    libxslt1-dev \
+    librhash-dev
+apt-get install -y --no-install-recommends -t trixie-backports \
+    libigloo-dev
 rm -rf /var/lib/apt/lists/*
 EOF
 
@@ -42,6 +46,7 @@ FROM debian:trixie-slim@sha256:cedb1ef40439206b673ee8b33a46a03a0c9fa90bf3732f547
 RUN <<"EOF"
 set -eux
 export DEBIAN_FRONTEND=noninteractive
+echo "deb http://deb.debian.org/debian trixie-backports main" >/etc/apt/sources.list.d/trixie-backports.list
 apt-get -y update
 apt-get install -y --no-install-recommends \
     ca-certificates \
@@ -53,7 +58,10 @@ apt-get install -y --no-install-recommends \
     libtheora0 \
     libvorbis0a \
     libxml2  \
-    libxslt1.1
+    libxslt1.1 \
+    librhash1
+apt-get install -y --no-install-recommends -t trixie-backports \
+    libigloo0t64
 rm -rf /var/lib/apt/lists/*
 EOF
 

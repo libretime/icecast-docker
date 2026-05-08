@@ -1,8 +1,15 @@
 FROM alpine:3.23@sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11 AS builder
 ARG VERSION
+ARG LIBIGLOO_VERSION
 
 RUN apk --no-cache add \
+    autoconf \
+    automake \
     build-base \
+    git \
+    libtool \
+    pkgconf \
+    rhash-dev \
     # Icecast
     curl-dev \
     libogg-dev \
@@ -12,6 +19,15 @@ RUN apk --no-cache add \
     libxslt-dev \
     openssl-dev \
     speex-dev
+
+WORKDIR /build
+RUN git clone --depth 1 --branch v$LIBIGLOO_VERSION https://gitlab.xiph.org/xiph/icecast-libigloo.git libigloo
+WORKDIR /build/libigloo
+RUN autoreconf -fi && \
+    ./configure --prefix=/usr && \
+    make && \
+    make install && \
+    make install DESTDIR=/build/output
 
 WORKDIR /build
 ADD icecast-$VERSION.tar.gz .
@@ -31,6 +47,7 @@ FROM alpine:3.23@sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a50
 RUN apk --no-cache add \
     libcurl \
     libogg \
+    rhash-libs \
     libtheora \
     libvorbis \
     libxml2 \
