@@ -1,4 +1,4 @@
-FROM alpine:3.23@sha256:266819353c6716fd9a64ef6a72eae7a72c05055b3660a30eb89d811c2c1a5c83 AS builder
+FROM alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 AS builder
 ARG VERSION
 ARG LIBIGLOO_VERSION
 
@@ -42,7 +42,7 @@ RUN ./configure \
 RUN make
 RUN make install DESTDIR=/build/output
 
-FROM alpine:3.23@sha256:266819353c6716fd9a64ef6a72eae7a72c05055b3660a30eb89d811c2c1a5c83
+FROM alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
 
 RUN apk --no-cache add \
     libcurl \
