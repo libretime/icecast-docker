@@ -16,13 +16,13 @@ apt-get install -y --no-install-recommends \
     pkg-config \
     libcurl4-openssl-dev \
     libogg-dev \
+    librhash-dev \
     libspeex-dev \
     libssl-dev \
     libtheora-dev \
     libvorbis-dev \
     libxml2-dev \
-    libxslt1-dev \
-    librhash-dev
+    libxslt1-dev
 apt-get install -y --no-install-recommends -t trixie-backports \
     libigloo-dev
 rm -rf /var/lib/apt/lists/*
@@ -53,13 +53,13 @@ apt-get install -y --no-install-recommends \
     media-types \
     libcurl4 \
     libogg0 \
+    librhash1 \
     libspeex1 \
     libssl3t64 \
     libtheora0 \
     libvorbis0a \
     libxml2  \
-    libxslt1.1 \
-    librhash1
+    libxslt1.1
 apt-get install -y --no-install-recommends -t trixie-backports \
     libigloo0t64
 rm -rf /var/lib/apt/lists/*

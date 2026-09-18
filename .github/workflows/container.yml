@@ -42,7 +42,6 @@ jobs:
     env:
       DEFAULT_VARIANT: debian
       DEFAULT_VERSION: 2.4.4
-      LIBIGLOO_VERSION: 0.9.5
 
     if: ${{ github.repository_owner == 'libretime' }}
     steps:
@@ -88,7 +87,6 @@ jobs:
           file: ${{ matrix.variant }}.dockerfile
           build-args: |
             VERSION=${{ matrix.version }}
-            LIBIGLOO_VERSION=${{ env.LIBIGLOO_VERSION }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64,linux/arm64
